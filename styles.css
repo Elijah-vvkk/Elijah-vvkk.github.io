@@ -68,23 +68,90 @@ body {
 .photo-gallery {
     position: relative;
     width: 100%;
-    height: 400px;
+    /* 以photo5.jpg的宽高比为标准，这里假设为16:9，可根据实际调整 */
+    aspect-ratio: 16/9;
+    max-width: 700px;
     margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    background: #222;
+    border-radius: 18px;
 }
 
-.gallery-container {
-    width: 100%;
+/* 模糊背景，左右各一层 */
+.gallery-bg {
+    position: absolute;
+    top: 0;
+    width: 40%;
     height: 100%;
+    z-index: 1;
+    background-position: center;
+    background-size: cover;
+    filter: blur(18px) brightness(0.7);
+    pointer-events: none;
+    transition: background-image 0.5s;
+}
+.gallery-bg-left {
+    left: 0;
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+}
+.gallery-bg-right {
+    right: 0;
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+}
+
+/* 主图和卡片区，flex布局居中 */
+.gallery-track {
     position: relative;
-}
-
-.gallery-image {
-    width: 100%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 100%;
-    object-fit: cover;
-    transition: var(--transition);
+    width: 100%;
 }
 
+/* 主图完整展示，object-fit: contain，带阴影 */
+.main-image {
+    width: 60%;
+    height: 90%;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+    background: #222;
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+/* 左右卡片缩小、半透明、偏移 */
+.side-image {
+    position: absolute;
+    top: 50%;
+    width: 30%;
+    height: 70%;
+    object-fit: contain;
+    border-radius: 10px;
+    opacity: 0.6;
+    background: #222;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    transform: translateY(-50%) scale(0.85);
+    transition: transform 0.5s, opacity 0.5s;
+    z-index: 2;
+}
+.left-image {
+    left: 2%;
+    /* 向左偏移 */
+    transform: translateY(-50%) translateX(-40%) scale(0.85);
+}
+.right-image {
+    right: 2%;
+    /* 向右偏移 */
+    transform: translateY(-50%) translateX(40%) scale(0.85);
+}
+
+/* 切换区域不变 */
 .gallery-controls {
     position: absolute;
     top: 0;
@@ -92,8 +159,8 @@ body {
     width: 100%;
     height: 100%;
     display: flex;
+    z-index: 10;
 }
-
 .prev-area, .next-area {
     flex: 1;
     cursor: pointer;
@@ -136,8 +203,28 @@ body {
     background-color: var(--primary-color);
 }
 
+/* ===================== 职业经历右移并加宽 ===================== */
+.experience-section .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 40px;
+    /* 让整体内容稍微右移 */
+    padding-left: 40px;
+}
 .experience-category {
-    margin-bottom: 40px;
+    flex: 1;
+    margin-bottom: 0;
+}
+/* 让职业经历板块更宽 */
+.experience-category:last-child {
+    flex: 1.3;
+    min-width: 320px;
+}
+/* 保证职业经历内的标题和内容不易换行 */
+.experience-category:last-child .timeline-content h3,
+.experience-category:last-child .timeline-content p {
+    white-space: nowrap;
 }
 
 .timeline {
@@ -146,13 +233,7 @@ body {
 }
 
 .timeline::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background-color: var(--accent-color);
+    display: none;
 }
 
 .timeline-item {
@@ -165,7 +246,8 @@ body {
 .timeline-item img {
     width: 200px;
     height: 150px;
-    object-fit: cover;
+    object-fit: contain !important; /* 保证图片完整展示，比例不合适时缩放 */
+    background: #fff; /* 幕布颜色改为白色 */
     border-radius: 8px;
 }
 
@@ -196,8 +278,9 @@ body {
 .work-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain !important; /* 保证图片完整展示，比例不合适时缩放 */
     transition: var(--transition);
+    background: #222; /* 避免空白区域出现杂色 */
 }
 
 .work-overlay {
@@ -217,6 +300,10 @@ body {
 
 .work-item:hover img {
     transform: scale(1.1);
+}
+
+.work-overlay h3 {
+    color: #fff; /* 作品名称字体改为白色 */
 }
 
 /* 模态框 */
@@ -271,4 +358,91 @@ body {
         margin-left: 0;
         margin-top: 15px;
     }
+}
+
+/* 针对photo2.jpg，展示图片中间部分 */
+.centered-image {
+    object-position: center center !important; /* 只对中间部分居中显示 */
+}
+
+/* ===================== 轮播滑动动画 ===================== */
+/* 向左滑动（下一张） */
+.slide-next {
+    animation: slideNextMain 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.left-image.slide-next {
+    animation: slideNextLeft 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.right-image.slide-next {
+    animation: slideNextRight 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+@keyframes slideNextMain {
+    0% { transform: translateX(0) scale(1); opacity: 1; }
+    100% { transform: translateX(-120%) scale(0.85); opacity: 0; }
+}
+@keyframes slideNextLeft {
+    0% { transform: translateY(-50%) translateX(-40%) scale(0.85); opacity: 0.6; }
+    100% { transform: translateY(-50%) translateX(-120%) scale(0.7); opacity: 0; }
+}
+@keyframes slideNextRight {
+    0% { transform: translateY(-50%) translateX(40%) scale(0.85); opacity: 0.6; }
+    100% { transform: translateY(-50%) translateX(-10%) scale(1); opacity: 1; }
+}
+
+/* 向右滑动（上一张，后续可补充） */
+.slide-prev {
+    animation: slidePrevMain 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.left-image.slide-prev {
+    animation: slidePrevLeft 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.right-image.slide-prev {
+    animation: slidePrevRight 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+@keyframes slidePrevMain {
+    0% { transform: translateX(0) scale(1); opacity: 1; }
+    100% { transform: translateX(120%) scale(0.85); opacity: 0; }
+}
+@keyframes slidePrevLeft {
+    0% { transform: translateY(-50%) translateX(-40%) scale(0.85); opacity: 0.6; }
+    100% { transform: translateY(-50%) translateX(10%) scale(1); opacity: 1; }
+}
+@keyframes slidePrevRight {
+    0% { transform: translateY(-50%) translateX(40%) scale(0.85); opacity: 0.6; }
+    100% { transform: translateY(-50%) translateX(120%) scale(0.7); opacity: 0; }
+}
+
+/* ===================== 教育经历图片区域宽度统一，文字左对齐 ===================== */
+.experience-category:nth-child(2) .timeline-item {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+.experience-category:nth-child(2) .timeline-img-box {
+    width: 160px;
+    height: 120px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 12px;
+}
+.experience-category:nth-child(2) .timeline-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain !important;
+    background: #fff;
+    display: block;
+    margin: 0;
+    border-radius: 8px;
+}
+.experience-category:nth-child(2) .timeline-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-width: 140px;
+    margin-left: 0;
+    text-align: left;
 } 

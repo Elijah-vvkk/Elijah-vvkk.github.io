@@ -1,6 +1,11 @@
 // 照片轮播功能
 document.addEventListener('DOMContentLoaded', function() {
-    const galleryContainer = document.querySelector('.gallery-container');
+    // 获取主图、左右卡片、模糊背景元素
+    const mainImg = document.querySelector('.main-image');
+    const leftImg = document.querySelector('.left-image');
+    const rightImg = document.querySelector('.right-image');
+    const bgLeft = document.querySelector('.gallery-bg-left');
+    const bgRight = document.querySelector('.gallery-bg-right');
     const prevArea = document.querySelector('.prev-area');
     const nextArea = document.querySelector('.next-area');
     
@@ -16,35 +21,81 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
     
     let currentIndex = 0;
+    let isAnimating = false; // 动画进行中标志，防止多次点击
     
-    // 更新照片
-    function updatePhoto() {
-        const img = galleryContainer.querySelector('img');
-        img.style.opacity = '0';
-        
-        setTimeout(() => {
-            img.src = photos[currentIndex];
-            img.style.opacity = '1';
-        }, 300);
+    // 更新所有图片和背景
+    function updateGallery() {
+        // 主图
+        mainImg.src = photos[currentIndex];
+        // 左侧卡片（上一张）
+        leftImg.src = photos[(currentIndex - 1 + photos.length) % photos.length];
+        // 右侧卡片（下一张）
+        rightImg.src = photos[(currentIndex + 1) % photos.length];
+        // 左侧模糊背景（上一张）
+        bgLeft.style.backgroundImage = `url('${photos[(currentIndex - 1 + photos.length) % photos.length]}')`;
+        // 右侧模糊背景（下一张）
+        bgRight.style.backgroundImage = `url('${photos[(currentIndex + 1) % photos.length]}')`;
+
+        // 针对photo2.jpg展示中间部分，其余展示下半部分
+        if (photos[currentIndex].includes('photo2.jpg')) {
+            mainImg.classList.add('centered-image');
+        } else {
+            mainImg.classList.remove('centered-image');
+        }
     }
     
-    // 上一张照片
-    prevArea.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + photos.length) % photos.length;
-        updatePhoto();
-    });
+    // 动画切换到下一张
+    function slideToNext() {
+        if (isAnimating) return;
+        isAnimating = true;
+        // 添加动画类
+        mainImg.classList.add('slide-next');
+        leftImg.classList.add('slide-next');
+        rightImg.classList.add('slide-next');
+        // 动画结束后切换图片
+        setTimeout(() => {
+            currentIndex = (currentIndex + 1) % photos.length;
+            updateGallery();
+            // 移除动画类，重置位置
+            mainImg.classList.remove('slide-next');
+            leftImg.classList.remove('slide-next');
+            rightImg.classList.remove('slide-next');
+            isAnimating = false;
+        }, 500); // 动画时长与CSS一致
+    }
     
-    // 下一张照片
-    nextArea.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % photos.length;
-        updatePhoto();
-    });
+    // 动画切换到上一张
+    function slideToPrev() {
+        if (isAnimating) return;
+        isAnimating = true;
+        // 添加动画类
+        mainImg.classList.add('slide-prev');
+        leftImg.classList.add('slide-prev');
+        rightImg.classList.add('slide-prev');
+        // 动画结束后切换图片
+        setTimeout(() => {
+            currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+            updateGallery();
+            // 移除动画类，重置位置
+            mainImg.classList.remove('slide-prev');
+            leftImg.classList.remove('slide-prev');
+            rightImg.classList.remove('slide-prev');
+            isAnimating = false;
+        }, 500);
+    }
     
-    // 自动轮播
-    setInterval(() => {
-        currentIndex = (currentIndex + 1) % photos.length;
-        updatePhoto();
-    }, 5000);
+    // 绑定点击事件
+    prevArea.addEventListener('click', slideToPrev);
+    nextArea.addEventListener('click', slideToNext);
+    
+    // 自动轮播（可选）
+    // setInterval(() => {
+    //     currentIndex = (currentIndex + 1) % photos.length;
+    //     updateGallery();
+    // }, 5000);
+
+    // 初始化
+    updateGallery();
 });
 
 // 模态框功能

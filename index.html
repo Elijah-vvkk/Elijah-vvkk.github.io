@@ -21,10 +21,17 @@
                 
                 <!-- 照片轮播 -->
                 <div class="photo-gallery">
-                    <div class="gallery-container">
-                        <img src="Asset/photo/photo1.jpg" alt="个人照片" class="gallery-image">
-                        <!-- 更多照片将通过JavaScript动态加载 -->
+                    <!-- 左侧模糊背景 -->
+                    <div class="gallery-bg gallery-bg-left"></div>
+                    <!-- 右侧模糊背景 -->
+                    <div class="gallery-bg gallery-bg-right"></div>
+                    <!-- 主图和卡片区 -->
+                    <div class="gallery-track">
+                        <img src="Asset/photo/photo1.jpg" alt="主图" class="gallery-image main-image">
+                        <img src="Asset/photo/photo2.jpg" alt="左侧卡片" class="gallery-image side-image left-image">
+                        <img src="Asset/photo/photo3.jpg" alt="右侧卡片" class="gallery-image side-image right-image">
                     </div>
+                    <!-- 切换区域 -->
                     <div class="gallery-controls">
                         <div class="prev-area"></div>
                         <div class="next-area"></div>
@@ -76,21 +83,22 @@
                         <img src="Asset/city/beijing.jpg" alt="北京">
                         <div class="timeline-content">
                             <h3>北京</h3>
-                            <p>学习 - 工作</p>
+                            <p>家 - 春 - 秋</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <img src="Asset/city/milan.jpg" alt="米兰">
                         <div class="timeline-content">
                             <h3>米兰</h3>
-                            <p>学习 - 生活</p>
+                            <p>帕尔马火腿</p>
+                            <p>气泡水</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <img src="Asset/city/saopaulo.jpg" alt="圣保罗">
                         <div class="timeline-content">
                             <h3>圣保罗</h3>
-                            <p>生活 - 工作</p>
+                            <p>夜之城</p>
                         </div>
                     </div>
                 </div>
@@ -100,24 +108,24 @@
                 <h2>🎓 教育经历</h2>
                 <div class="timeline">
                     <div class="timeline-item">
-                        <img src="Asset/school/ynsdfz.jpg" alt="云南师大附中">
+                        <div class="timeline-img-box"><img src="Asset/school/ynsdfz.jpg" alt="云南师大附中"></div>
                         <div class="timeline-content">
                             <h3>云南师大附中</h3>
                             <p>西南联大 - 心灵家园</p>
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <img src="Asset/school/pku.png" alt="北京大学">
+                        <div class="timeline-img-box"><img src="Asset/school/pku.png" alt="北京大学"></div>
                         <div class="timeline-content">
                             <h3>北京大学</h3>
-                            <p>学习 - 成长</p>
+                            <p>未来领导者 - 社会学 - 五四精神</p>
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <img src="Asset/school/bocconi.png" alt="Bocconi University">
+                        <div class="timeline-img-box"><img src="Asset/school/bocconi.png" alt="Bocconi University"></div>
                         <div class="timeline-content">
                             <h3>Bocconi University</h3>
-                            <p>学习 - 国际视野</p>
+                            <p>CEMS - Innovation - Globalization</p>
                         </div>
                     </div>
                 </div>
