@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李维凯 - 个人主页</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 头图部分 -->
+    <header class="header">
+        <img src="Asset/头图.jpg" alt="头图" class="header-image">
+    </header>
+
+    <!-- 个人信息部分 -->
+    <section class="info-section">
+        <div class="container">
+            <div class="info-left">
+                <h1 class="name">李维凯 Weikai Li</h1>
+                
+                <!-- 照片轮播 -->
+                <div class="photo-gallery">
+                    <div class="gallery-container">
+                        <img src="Asset/photo/1.jpg" alt="个人照片" class="gallery-image">
+                        <!-- 更多照片将通过JavaScript动态加载 -->
+                    </div>
+                    <div class="gallery-controls">
+                        <div class="prev-area"></div>
+                        <div class="next-area"></div>
+                    </div>
+                </div>
+
+                <!-- 联系方式 -->
+                <div class="contact-info">
+                    <a href="mailto:723523592a@gmail.com" class="contact-item" data-tooltip="邮箱：723523592a@gmail.com">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="#" class="contact-item" data-tooltip="微信：elijahkkkkk" id="wechat-trigger">
+                        <i class="fab fa-weixin"></i>
+                    </a>
+                    <a href="https://space.bilibili.com/238198339" class="contact-item" data-tooltip="B站：南彦酱">
+                        <i class="fab fa-bilibili"></i>
+                    </a>
+                    <a href="https://www.xiaohongshu.com/user/profile/5b9a6ac012b8bf00012b5d94" class="contact-item" data-tooltip="小红书：南彦酱">
+                        <i class="fas fa-book"></i>
+                    </a>
+                    <a href="#" class="contact-item" data-tooltip="微信公众号：南彦酱" id="wechat-official-trigger">
+                        <i class="fas fa-qrcode"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="info-right">
+                <p class="bio">
+                    我是一名充满激情的开发者和创新者，专注于人工智能和创业领域。我的经历跨越了多个国家和文化，这让我能够以独特的视角看待技术和商业问题。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 经历部分 -->
+    <section class="experience-section">
+        <div class="container">
+            <div class="experience-category">
+                <h2>🏠 居住经历</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <img src="Asset/city/kunming.jpg" alt="昆明">
+                        <div class="timeline-content">
+                            <h3>昆明</h3>
+                            <p>家 - 冬 - 夏</p>
+                        </div>
+                    </div>
+                    <!-- 其他城市经历 -->
+                </div>
+            </div>
+
+            <div class="experience-category">
+                <h2>🎓 教育经历</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <img src="Asset/school/ynsdfz.jpg" alt="云南师大附中">
+                        <div class="timeline-content">
+                            <h3>云南师大附中</h3>
+                            <p>西南联大 - 心灵家园</p>
+                        </div>
+                    </div>
+                    <!-- 其他教育经历 -->
+                </div>
+            </div>
+
+            <div class="experience-category">
+                <h2>💼 职业经历</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <img src="Asset/career/didi.jpg" alt="Didi">
+                        <div class="timeline-content">
+                            <h3>Didi</h3>
+                            <p>EV - charging - strategy</p>
+                        </div>
+                    </div>
+                    <!-- 其他职业经历 -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品展示部分 -->
+    <section class="works-section">
+        <div class="container">
+            <h2>我的作品</h2>
+            <div class="works-grid">
+                <a href="https://kjwyqraohksf.sealoshzh.site/" class="work-item">
+                    <img src="Asset/work/Prompter.png" alt="Prompter">
+                    <div class="work-overlay">
+                        <h3>Prompter - 桌面AI提示词模板管理工具</h3>
+                    </div>
+                </a>
+                <a href="https://www.bilibili.com/video/BV1Gv421y7b8/" class="work-item">
+                    <img src="Asset/work/视频.png" alt="骑行视频">
+                    <div class="work-overlay">
+                        <h3>向阳而生 | 北大机车男的19-23，滇、川、新、青藏线</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 模态框 -->
+    <div id="wechat-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img src="Asset/wechat-qr.jpg" alt="微信二维码">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
