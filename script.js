@@ -6,10 +6,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 照片数组
     const photos = [
-        'Asset/photo/1.jpg',
-        'Asset/photo/2.jpg',
-        'Asset/photo/3.jpg',
-        // 添加更多照片路径
+        'Asset/photo/photo1.jpg',
+        'Asset/photo/photo2.jpg',
+        'Asset/photo/photo3.jpg',
+        'Asset/photo/photo4.jpg',
+        'Asset/photo/photo5.jpg',
+        'Asset/photo/photo6.jpg',
+        'Asset/photo/photo7.jpg',
     ];
     
     let currentIndex = 0;
