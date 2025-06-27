@@ -28,21 +28,23 @@ This is my profile page for public
 
 ## 🚀 我的经历
 
-### 🏠 居住经历
+### 🏠 我曾经在这些地方生活过：
 - 🌸 昆明：家 - 冬 - 夏
 - 🏛️ 北京：家 - 春 - 秋
 - 🍕 米兰：帕尔马火腿 - 气泡水
 - 🌃 圣保罗：夜之城
 
-### 🎓 教育经历
+### 🎓 这是我的精神家园：
 - 🏫 云南师大附中：西南联大 - 心灵家园
 - 🎓 北京大学光华管理学院：未来领导者 - 社会学 - 五四精神
 - 🌍 Bocconi University：CEMS - Innovation - Globalization
 
-### 💼 职业经历
-- 🚗 Didi：EV - charging - strategy
-- 🏎️ Porsche Consulting：EV - charging - infrastructure
-- 🤖 MiraclePlus：Robotics - AI - venture
+### 💼 在这里探索了我的职业
+- 🚗 Didi：EV - Charging - Strategy
+- 🏎️ Porsche Consulting：EV - Charging - Infrastructure
+- 🤖 MiraclePlus：Robotics - AI - Venture
+- 👼 InnoAngel：Robotics - Innovation - Venture  
+  <img src="./Asset/career/innoangel.jpeg" alt="InnoAngel" width="120"/>
 
 ## 🎨 我的作品
 

@@ -477,6 +477,11 @@ body {
     line-height: 1.7;
 }
 
+/* 为"可以找我聊"添加底部边距，创建与"我的品味"的视觉区隔 */
+.about-me li.chat-section {
+    margin-bottom: 2em;
+}
+
 .logo-card {
     width: 200px;
     height: 150px;
